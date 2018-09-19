@@ -12,24 +12,22 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @RestController
-public class PersonController {
+public class SortPersonController {
 
-    private final AtomicLong atomicLong = new AtomicLong();
+    private AtomicLong atomicLong = new AtomicLong();
 
-    @GetMapping("/persons")
-    public ResponseEntity getSortPerson(@RequestParam(name = "name") String names) {
-        if(names == null || names.equals("")) {
+    @GetMapping("/people")
+    public ResponseEntity getSortPerson(@RequestParam(value = "nameSource") String nameSource) {
+        if(nameSource == null || nameSource.equals("")){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        List<Person> sortedPersons = Arrays.stream(names.split(","))
-                .map(String::trim)
+        List<Person> persons = Arrays.stream(nameSource.split(","))
                 .map(String::toUpperCase)
-                .map(name -> name.replace(" ", ","))
+                .map(name -> name.trim().replace(" ", ","))
                 .sorted()
                 .map(name -> new Person(atomicLong.incrementAndGet(), name))
                 .collect(Collectors.toList());
-
-        return new ResponseEntity<>(sortedPersons, HttpStatus.OK);
+        return new ResponseEntity<>(persons, HttpStatus.OK);
     }
 }

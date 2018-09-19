@@ -11,43 +11,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-class SortPersonTest {
+class SortedPersonControllerTest {
     private MockMvc mockMvc;
 
     @BeforeEach
     void setup() {
-        mockMvc = standaloneSetup(new PersonController()).build();
+        mockMvc = standaloneSetup(new SortPersonController()).build();
     }
 
     @Test
-    void should_can_sort_person_when_input_string_names() throws Exception {
-        ResultActions perform = mockMvc.perform(get("/persons")
-                .param("name", "dou qingqing,huang lizhen"));
+    void should_can_sort_person() throws Exception {
+        ResultActions perform = mockMvc.perform(get("/people").param("nameSource", "huang lizhen, dou qingqing"));
         perform.andDo(print());
         perform.andExpect(status().isOk());
 
-        perform.andExpect(jsonPath("$[0].id").value("1"));
+        perform.andExpect(jsonPath("$[0].id").value(1));
         perform.andExpect(jsonPath("$[0].name").value("DOU,QINGQING"));
 
-        perform.andExpect(jsonPath("$[1].id").value("2"));
+        perform.andExpect(jsonPath("$[1].id").value(2));
         perform.andExpect(jsonPath("$[1].name").value("HUANG,LIZHEN"));
     }
 
     @Test
     void should_throw_exception_when_input_is_null() throws Exception {
-        ResultActions perform = mockMvc.perform(get("/persons")
-                .param("name", (String) null));
+        ResultActions perform = mockMvc.perform(get("/people").param("nameSource", (String) null));
         perform.andDo(print());
         perform.andExpect(status().is4xxClientError());
     }
 
     @Test
     void should_throw_exception_when_input_is_empty() throws Exception {
-        ResultActions perform = mockMvc.perform(get("/persons")
-                .param("name", ""));
+        ResultActions perform = mockMvc.perform(get("/people").param("nameSource", ""));
         perform.andDo(print());
         perform.andExpect(status().is4xxClientError());
     }
-
-
 }
