@@ -1,4 +1,4 @@
-package com.example.sum;
+package com.example.sum.division;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

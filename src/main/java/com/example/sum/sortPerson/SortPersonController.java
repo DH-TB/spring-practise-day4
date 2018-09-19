@@ -1,4 +1,4 @@
-package com.example.sum;
+package com.example.sum.sortPerson;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class SortPersonController {
 
     @GetMapping("/people")
     public ResponseEntity getSortPerson(@RequestParam(value = "nameSource") String nameSource) {
-        if(nameSource == null || nameSource.equals("")){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (nameSource == null || nameSource.equals("")) {
+            return new ResponseEntity<>("input nameSource illegal", HttpStatus.BAD_REQUEST);
         }
 
         List<Person> persons = Arrays.stream(nameSource.split(","))

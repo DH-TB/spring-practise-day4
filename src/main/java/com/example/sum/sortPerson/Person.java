@@ -1,4 +1,4 @@
-package com.example.sum;
+package com.example.sum.sortPerson;
 
 public class Person {
     private Long id;

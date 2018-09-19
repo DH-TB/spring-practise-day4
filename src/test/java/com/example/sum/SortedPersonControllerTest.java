@@ -1,5 +1,6 @@
 package com.example.sum;
 
+import com.example.sum.sortPerson.SortPersonController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
@@ -7,6 +8,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -44,5 +46,6 @@ class SortedPersonControllerTest {
         ResultActions perform = mockMvc.perform(get("/people").param("nameSource", ""));
         perform.andDo(print());
         perform.andExpect(status().is4xxClientError());
+        perform.andExpect(content().string("input nameSource illegal"));
     }
 }
