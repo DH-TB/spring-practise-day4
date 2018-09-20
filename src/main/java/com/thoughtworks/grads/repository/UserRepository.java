@@ -10,4 +10,9 @@ public interface UserRepository {
     void save(User user);
 
     User updateUser(Integer id, User user);
+
+    void delete(Integer id);
+
+    User getUserById(Integer id);
+
 }

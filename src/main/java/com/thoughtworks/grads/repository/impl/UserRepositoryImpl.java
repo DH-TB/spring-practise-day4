@@ -22,4 +22,14 @@ public class UserRepositoryImpl implements UserRepository {
     public User updateUser(Integer id, User user) {
         return UserStorage.updateUser(id, user);
     }
+
+    @Override
+    public void delete(Integer id) {
+        UserStorage.delete(id);
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return UserStorage.getUserById(id);
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -78,5 +79,21 @@ class UserControllerTests {
         User storageUser = UserStorage.getUserById(user.getId());
 
         assertEquals(storageUser.getName(), updatedUser.getName());
+    }
+
+    @Test
+    void should_delete_user_by_id() throws Exception{
+        User user = new User(1, "huanglizhen");
+        UserStorage.add(user);
+
+        int originSize = UserStorage.getSize();
+
+        mockMvc.perform(delete("/api/users/1"))
+                .andExpect(status().isNoContent());
+
+        int currentSize = UserStorage.getSize();
+
+        assertEquals(originSize - 1, currentSize);
+        assertNull(UserStorage.getUserById(user.getId()));
     }
 }

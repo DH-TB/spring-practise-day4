@@ -39,4 +39,8 @@ public class UserStorage {
         findUser.setName(user.getName());
         return findUser;
     }
+
+    public static void delete(Integer id) {
+        USERS.remove(id);
+    }
 }
