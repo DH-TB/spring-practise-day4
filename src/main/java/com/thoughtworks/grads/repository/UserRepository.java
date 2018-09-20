@@ -6,4 +6,13 @@ import java.util.Collection;
 
 public interface UserRepository {
     Collection<User> findUser();
+
+    void saveUser(User user);
+
+    User findUserById(Integer id);
+
+    void deleteUserById(Integer id);
+
+    void updateUser(User user);
+
 }
