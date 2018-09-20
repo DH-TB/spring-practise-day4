@@ -7,6 +7,11 @@ public class User {
     //json - User 需要有默认构造函数
 
     public User() {
+
+    }
+
+    public User(String name) {
+        this.name = name;
     }
 
     public User(Integer id, String name) {

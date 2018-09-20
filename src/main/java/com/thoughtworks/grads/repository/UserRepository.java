@@ -8,4 +8,6 @@ public interface UserRepository {
     Collection<User> findUser();
 
     void save(User user);
+
+    User updateUser(Integer id, User user);
 }

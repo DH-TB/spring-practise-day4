@@ -17,4 +17,9 @@ public class UserRepositoryImpl implements UserRepository {
     public void save(User user) {
         UserStorage.saveUser(user);
     }
+
+    @Override
+    public User updateUser(Integer id, User user) {
+        return UserStorage.updateUser(id, user);
+    }
 }

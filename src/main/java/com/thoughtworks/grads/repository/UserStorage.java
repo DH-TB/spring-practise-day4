@@ -29,4 +29,14 @@ public class UserStorage {
     public static int getSize() {
         return USERS.size();
     }
+
+    public static User getUserById(Integer id) {
+        return USERS.get(id);
+    }
+
+    public static User updateUser(Integer id,User user) {
+        User findUser = getUserById(id);
+        findUser.setName(user.getName());
+        return findUser;
+    }
 }

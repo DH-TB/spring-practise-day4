@@ -25,4 +25,10 @@ public class UserController {
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity updateUser(@PathVariable Integer id, @RequestBody User user) {
+
+        return new ResponseEntity<>(userRepository.updateUser(id, user), HttpStatus.OK);
+    }
 }
