@@ -1,12 +1,12 @@
-package com.example.sum;
+package com.thoughtworks.grads;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SumApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SumApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
