@@ -14,28 +14,19 @@ public class UserStorage {
         return USERS.values();
     }
 
-    public static void saveUser(User user) {
-        USERS.put(user.getId(), user);
-    }
-
-    public static User getUserById(Integer id) {
-        return USERS.get(id);
-    }
-
-    public static void deleteUserById(Integer id) {
-        USERS.remove(id);
-    }
-
-    public static void updateUser(User user) {
-        User updateUser = USERS.get(user.getId());
-        updateUser.setName(user.getName());
-    }
-
     public static void clear() {
         USERS.clear();
     }
 
     public static void add(User... users) {
         Arrays.stream(users).forEach(user -> USERS.put(user.getId(), user));
+    }
+
+    public static void saveUser(User user) {
+        USERS.put(user.getId(), user);
+    }
+
+    public static int getSize() {
+        return USERS.size();
     }
 }

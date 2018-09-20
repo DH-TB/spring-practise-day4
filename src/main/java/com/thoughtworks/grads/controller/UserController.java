@@ -20,22 +20,9 @@ public class UserController {
         return userRepository.findUser();
     }
 
-    @GetMapping("/users/{id}")
-    public User queryById(@PathVariable Integer id) {
-        return userRepository.findUserById(id);
-    }
-
-
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity deleteUser(@PathVariable Integer id) {
-        userRepository.deleteUserById(id);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PutMapping("/user/{id}")
-    public ResponseEntity modifyUser(@RequestBody User user) {
-        userRepository.updateUser(user);
+    @PostMapping("/users")
+    public ResponseEntity saveUser(@RequestBody User user) {
+        userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }

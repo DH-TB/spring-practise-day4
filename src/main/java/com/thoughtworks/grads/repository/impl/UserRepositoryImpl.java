@@ -14,22 +14,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void save(User user) {
         UserStorage.saveUser(user);
-    }
-
-    @Override
-    public User findUserById(Integer id) {
-        return UserStorage.getUserById(id);
-    }
-
-    @Override
-    public void updateUser(User user) {
-        UserStorage.updateUser(user);
-    }
-
-    @Override
-    public void deleteUserById(Integer id) {
-        UserStorage.deleteUserById(id);
     }
 }
